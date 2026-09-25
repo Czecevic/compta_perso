@@ -1,0 +1,246 @@
+{
+  "version": "8",
+  "dialect": "postgres",
+  "id": "63ad2aa5-88b5-4682-88f3-4d54c2f6b415",
+  "prevIds": [
+    "de746696-dc51-49eb-8af0-54410987b868"
+  ],
+  "ddl": [
+    {
+      "values": [
+        "Loyer",
+        "Abonnement",
+        "Gaz/Electricité",
+        "Course",
+        "Autre"
+      ],
+      "name": "categorie_precise",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "mensuel",
+        "annuel",
+        "unique"
+      ],
+      "name": "frequence_role",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "ticket",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "user_ticket",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "users",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "type": "serial",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "ticket"
+    },
+    {
+      "type": "categorie_precise",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "categorie",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "ticket"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "montant",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "ticket"
+    },
+    {
+      "type": "frequence_role",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": "'mensuel'",
+      "generated": null,
+      "identity": null,
+      "name": "frequence",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "ticket"
+    },
+    {
+      "type": "bool",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": "",
+      "generated": null,
+      "identity": null,
+      "name": "is_paid",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "ticket"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "user_ticket"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "ticket_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "user_ticket"
+    },
+    {
+      "type": "serial",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "revenu",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "users"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "user_ticket_user_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "user_ticket"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "ticket_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "ticket",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "user_ticket_ticket_id_ticket_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "user_ticket"
+    },
+    {
+      "columns": [
+        "user_id",
+        "ticket_id"
+      ],
+      "nameExplicit": false,
+      "name": "user_ticket_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "user_ticket"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "ticket_pkey",
+      "schema": "public",
+      "table": "ticket",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "users_pkey",
+      "schema": "public",
+      "table": "users",
+      "entityType": "pks"
+    }
+  ],
+  "renames": []
+}

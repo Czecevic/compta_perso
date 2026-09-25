@@ -1,3 +1,9 @@
+export interface UserTicketRecord {
+  userId: number;
+  ticketId: number;
+  isPaid: boolean | null;
+}
+
 export interface userTicketProps {
   users: {
     id: number;
@@ -16,6 +22,7 @@ export interface userTicketProps {
     montant: number | null;
     frequence: "mensuel" | "annuel" | "unique" | null;
   }[];
+  userTickets?: UserTicketRecord[];
 }
 
 export interface userProps {
@@ -25,4 +32,5 @@ export interface userProps {
     revenu: number;
   }[];
   id: number;
+  userTickets?: UserTicketRecord[];
 }

@@ -1,3 +1,4 @@
+import { boolean } from "drizzle-orm/pg-core";
 import {
   pgTable,
   serial,
@@ -7,7 +8,7 @@ import {
   primaryKey,
 } from "drizzle-orm/pg-core";
 
-export const frequenceEnum = pgEnum("frequence_role", [
+export const frequenceEnum = pgEnum("frequence", [
   "mensuel",
   "annuel",
   "unique",
@@ -47,6 +48,7 @@ export const userTicketTable = pgTable(
       .references(() => ticketTable.id, {
         onDelete: "cascade",
       }),
+    isPaid: boolean("is_paid").default(false),
   },
   (table) => {
     return {
